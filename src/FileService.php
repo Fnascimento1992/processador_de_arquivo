@@ -13,11 +13,6 @@ class FileService
      */
     private $sufix;
 
-    public function uploadFile()
-    {
-        $this->filename = $filename;
-    }
-
         
     /**
      * splitFile
