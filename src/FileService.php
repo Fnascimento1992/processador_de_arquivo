@@ -13,6 +13,10 @@ class FileService
      */
     private $sufix;
 
+    public function uploadFile()
+    {
+        $this->filename = $filename;
+    }
 
         
     /**
@@ -36,5 +40,7 @@ class FileService
     {
         echo "Método de Split por tamanho"; 
     }
+
+    
 
 }
