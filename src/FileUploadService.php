@@ -7,38 +7,22 @@ use Src\FileService;
 class FileUpload
 {
     private $file;
+    private $fileFormat = ['text/plain'];
     private $fileName;
     private $fileSize;
     private $fileExt;
-    private $directory;
-    private $fileService;
 
-    public function __construct(
-        $fileService = new FileService()
-    )
+    public function __construct()
     {
-        $this->fileService = $fileService;
-     
+        #code...  
     }
 
-    public function setDirectory($directory)
+    public function upload($file)
     {
-        $this->directory = $directory;
+        if (is_array($file)) {
+            move_uploaded_file($file['tmp_name'], 'upload/' . $file['name']);
+        } else {
+            die("Error");
+        }
     }
-
-    public function upload()
-    {
-        #code....
-        $this->fileService->splitFileofLine();
-        
-    }    
-
 }
-if (isset($_POST['submit'])) {
-    $file = $_FILES['file'];
-    $upload = new FileUpload($file);
-    /*$upload->setUploadDirectory("uploads/");
-    $fileDestination = $upload->upload();
-    echo "File uploaded successfully to: " . $fileDestination;*/
-    var_dump($_POST['submit']);
-  }

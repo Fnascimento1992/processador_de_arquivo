@@ -3,17 +3,17 @@
 namespace Src;
 
 class FileService
-{    
+{
     /**
      * @var mixed filename
      */
-    private $filename;    
+    private $filename;
     /**
      * @var mixed sufix
      */
     private $sufix;
 
-        
+
     /**
      * splitFile
      *
@@ -22,10 +22,9 @@ class FileService
     public function splitFileofLine()
     {
         #code...
-        echo "Método de Split por Linhas"; 
- 
+        echo "Método de Split por Linhas";
     }
-    
+
     /**
      * splitFileOfSize
      *
@@ -33,9 +32,6 @@ class FileService
      */
     public function splitFileOfSize()
     {
-        echo "Método de Split por tamanho"; 
+        echo "Método de Split por tamanho";
     }
-
-    
-
 }
