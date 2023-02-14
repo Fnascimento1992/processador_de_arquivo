@@ -7,4 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Src\\FileService' => $baseDir . '/src/FileService.php',
+    'Src\\FileUploadService' => $baseDir . '/src/FileUploadService.php',
+    'Src\\ManangerService' => $baseDir . '/src/ManangerService.php',
 );

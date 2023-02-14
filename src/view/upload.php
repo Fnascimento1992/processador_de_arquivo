@@ -1,10 +1,9 @@
 <?php
 
-use Src\FileUpload;
+use Src\FileUploadService;
 
-require_once('./src/FileUploadService.php');
 
-$file = new FileUpload();
+$file = new FileUploadService();
 $file->upload($_FILES['file']);
 
 

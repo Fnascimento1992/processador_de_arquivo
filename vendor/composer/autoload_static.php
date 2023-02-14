@@ -22,6 +22,9 @@ class ComposerStaticInitc8acdcec29daa0bb97206052c9254518
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Src\\FileService' => __DIR__ . '/../..' . '/src/FileService.php',
+        'Src\\FileUploadService' => __DIR__ . '/../..' . '/src/FileUploadService.php',
+        'Src\\ManangerService' => __DIR__ . '/../..' . '/src/ManangerService.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
