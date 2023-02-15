@@ -32,11 +32,12 @@ class FileUploadService
      *
      * @return void
      */
-    public function upload($file)
+    public function upload($file, $line)
     {
         try {
             if (is_array($file)) {
                 move_uploaded_file($file['tmp_name'], 'upload/' . $file['name'] . date('s'));
+                var_dump($line);
             }
         } catch (\Throwable $th) {
             throw new $th;

@@ -4,7 +4,7 @@ use Src\FileUploadService;
 
 
 $file = new FileUploadService();
-$file->upload($_FILES['file']);
+$file->upload($_FILES['file'], $_POST['lines']);
 
 
 ?>
