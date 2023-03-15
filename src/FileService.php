@@ -24,7 +24,7 @@ class FileService
     {
         $nameFile = $this->listFile($this->uploadDir);
         $splitFile = fopen($this->uploadDir . $nameFile, 'r');
-        $f = 1;
+        $f = "splitA" . 1;
         while (!feof($splitFile)) {
             $newfile = fopen($this->dirSplit . $f . '.txt', 'w');
             for ($i = 1; $i <= $this->lines; $i++) {
