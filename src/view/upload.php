@@ -1,10 +1,22 @@
 <?php
 
+use Src\FileDownload;
+use Src\FileService;
 use Src\FileUploadService;
 
 
 $file = new FileUploadService();
-$file->upload($_FILES['file'], $_POST['lines']);
+$file->upload($_FILES['file']);
+$fileDownload = new FileDownload();
+
+if (($lines = $_POST['lines'])) {
+    $split = new FileService('src/split/', $lines);
+    $split->split();
+    $fileDownload->listFiles('src/split/');
+} else {
+    die('Informe os campos');
+}
+
 
 
 ?>
@@ -13,12 +25,9 @@ $file->upload($_FILES['file'], $_POST['lines']);
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Split File</title>
 </head>
@@ -28,23 +37,21 @@ $file->upload($_FILES['file'], $_POST['lines']);
 
     <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
 
-        <div class="mb-3 container">
-            <label for="formFile" class="form-label">Split file to lines</label>
-            <input class="form-control" type="file" name="file">
-
-            <label for="formFile" class="form-label">Nº of lines</label>
-            <input class="form-control" type="text" name="lines">
+        <div>
+            <label for="formFile">Split file to lines</label>
+            <input type="file" name="file">
+            <br>
+            <label for="formFile">Nº of lines</label>
+            <input type="text" name="lines">
         </div>
-        <div class="mb-3 container">
-            <button type="submit" class="btn btn-secondary">Carregar</button>
+        <div>
+            <button type="submit">Split</button>
         </div>
 
     </form>
 
 
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 
 </body>

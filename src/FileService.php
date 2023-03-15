@@ -4,63 +4,58 @@ namespace Src;
 
 class FileService
 {
-    /**
-     * @var mixed filename
-     */
-    private $filename;
+    private $dirSplit;
+    private $uploadDir;
+    private $lines;
+
+    public function __construct($dirSplit, $lines)
+    {
+        $this->dirSplit = $dirSplit;
+        $this->uploadDir = 'src/uploads/';
+        $this->lines = $lines;
+    }
 
     /**
-     * @var mixed sufix
-     */
-    private $sufix;
-
-    private $fileTemp;
-
-
-
-    /**
-     * moveFile
+     * split
      *
      * @return void
      */
-    public function moveFile()
+    public function split()
     {
-        $uploadDirectory = 'upload/';
-
-        if (!$uploadDirectory) {
-            printf("Não foi possível abrir o diretório $uploadDirectory");
-        }
-
-        $uploadFiles = scandir($uploadDirectory);
-
-        foreach ($uploadFiles as $uploadFile) {
-            if (substr($uploadFile, 0, 1) == '.') {
-                // continue;
+        $nameFile = $this->listFile($this->uploadDir);
+        $splitFile = fopen($this->uploadDir . $nameFile, 'r');
+        $f = 1;
+        while (!feof($splitFile)) {
+            $newfile = fopen($this->dirSplit . $f . '.txt', 'w');
+            for ($i = 1; $i <= $this->lines; $i++) {
+                $import = fgets($splitFile);
+                fwrite($newfile, $import);
+                if (feof($splitFile)) {
+                    break;
+                }
             }
-            #  $filePath = $uploadDirectory . $uploadFile;
-
-            #  echo "Caminho completo: " . $filePath . "<br><hr>";
+            fclose($newfile);
+            $f++;
         }
+        fclose($splitFile);
     }
 
+
     /**
-     * splitFile
+     * listFile
+     *
+     * @param mixed dir
      *
      * @return void
      */
-    public function splitFileofLine()
+    public function listFile($dir)
     {
-        #code...
-        # echo "<hr>Método de Split por Linhas";
-    }
-
-    /**
-     * splitFileOfSize
-     *
-     * @return void
-     */
-    public function splitFileOfSize()
-    {
-        echo "Método de Split por tamanho";
+        $files = scandir($dir, SCANDIR_SORT_DESCENDING);
+        foreach ($files as $file) {
+            if (!in_array($file, array('.', '..'))) {
+                return $file;
+            }
+        }
+        return "";
     }
 }

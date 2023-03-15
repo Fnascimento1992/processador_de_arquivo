@@ -6,12 +6,7 @@ use Src\FileService;
 
 class FileUploadService
 {
-    private $file;
-    private $fileFormat;
-    private $fileName;
-    private $fileSize;
-    private $fileExt;
-    private $faleService;
+
     private $finalDir;
 
     /**
@@ -21,8 +16,7 @@ class FileUploadService
      */
     public function __construct()
     {
-        $this->fileService = new FileService();
-        $this->finalDir = 'upload/';
+        $this->finalDir = __DIR__ . '/uploads/';
     }
 
     /**
@@ -36,11 +30,10 @@ class FileUploadService
     {
         try {
             if (is_array($file)) {
-                move_uploaded_file($file['tmp_name'], 'upload/' . $file['name'] . date('s'));
+                move_uploaded_file($file['tmp_name'], $this->finalDir . $file['name']);
             }
         } catch (\Throwable $th) {
             throw new $th;
         }
-        $this->fileService->moveFile();
     }
 }
