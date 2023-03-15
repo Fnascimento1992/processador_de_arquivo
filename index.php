@@ -1,5 +1,5 @@
 <?php
-
+header("Cache-Control: no-cache, must-revalidate");
 require __DIR__ . "/vendor/autoload.php";
 
 

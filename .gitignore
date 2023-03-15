@@ -1,4 +1,5 @@
 anotation.txt
 base.php
 nbproject/
-upload
+src/uploads/*
+src/split/*
