@@ -13,7 +13,7 @@ class ManangerService
     *
     * @return void
     */
-   public function view()
+   public function view(): void
    {
       include_once('./src/view/upload.php');
    }

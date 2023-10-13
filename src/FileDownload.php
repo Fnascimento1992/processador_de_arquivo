@@ -12,11 +12,9 @@ class FileDownload
      *
      * @return void
      */
-    public function listFiles($dir)
+    public function listFiles($dir): void
     {
-
-        $files = array();
-
+        $file = array();
 
         $splitDir = opendir($dir);
         while (false !== ($file = readdir($splitDir))) {
@@ -27,9 +25,6 @@ class FileDownload
         closedir($splitDir);
 
         sort($files);
-
-
-
         foreach ($files as $file) {
             echo "<br> <a href='$dir/$file' Download>$file</a><br>";
         }

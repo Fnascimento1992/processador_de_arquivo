@@ -4,10 +4,14 @@ namespace Src;
 
 class FileService
 {
-    private $dirSplit;
-    private $uploadDir;
-    private $lines;
+    private string $dirSplit;
+    private string $uploadDir;
+    private string $lines;
 
+    /**
+     * @param $dirSplit
+     * @param $lines
+     */
     public function __construct($dirSplit, $lines)
     {
         $this->dirSplit = $dirSplit;
@@ -20,11 +24,11 @@ class FileService
      *
      * @return void
      */
-    public function split()
+    public function split(): void
     {
         $nameFile = $this->listFile($this->uploadDir);
         $splitFile = fopen($this->uploadDir . $nameFile, 'r');
-        $f = "splitA" . 1;
+        $f = 1;
         while (!feof($splitFile)) {
             $newfile = fopen($this->dirSplit . $f . '.txt', 'w');
             for ($i = 1; $i <= $this->lines; $i++) {
@@ -46,9 +50,9 @@ class FileService
      *
      * @param mixed dir
      *
-     * @return void
+     * @return string
      */
-    public function listFile($dir)
+    public function listFile($dir): string
     {
         $files = scandir($dir, SCANDIR_SORT_DESCENDING);
         foreach ($files as $file) {
